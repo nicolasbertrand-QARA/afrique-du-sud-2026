@@ -453,6 +453,16 @@ section {
   color: var(--text-primary);
   margin-bottom: var(--sp-1);
 }
+a.stealth-link {
+  color: inherit;
+  text-decoration: none;
+}
+a.stealth-link:hover {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
 .accom-detail {
   font-size: var(--fs-sm);
   color: var(--text-secondary);
@@ -1182,7 +1192,7 @@ section {
         <div class="stage-accommodation">
           <span class="accom-icon">🏨</span>
           <div>
-            <div class="accom-name">The President Hotel — Sea Point</div>
+            <div class="accom-name"><a class="stealth-link" href="https://www.presidenthotel.co.za" target="_blank" rel="noopener">The President Hotel</a> — Sea Point</div>
             <div class="accom-detail">Appartements spacieux avec vue mer, sur la promenade de Sea Point. Kids club, restaurant, emplacement idéal pour explorer le Cap à votre rythme.</div>
             <div class="accom-pool">🏊 Piscine extérieure face à l'océan</div>
           </div>
@@ -1195,23 +1205,23 @@ section {
           </div>
           <div class="day-item">
             <span class="day-label">Jour 2 · 18 oct</span>
-            <div class="day-content"><strong>Table Mountain</strong> en téléphérique — panorama époustouflant sur la ville et l'océan. Après-midi aux <strong>Jardins de Kirstenbosch</strong>, passerelle suspendue Boomslang dans la canopée.</div>
+            <div class="day-content"><a class="stealth-link" href="https://www.tablemountain.net" target="_blank" rel="noopener"><strong>Table Mountain</strong></a> en téléphérique — panorama époustouflant sur la ville et l'océan. Après-midi aux <a class="stealth-link" href="https://www.sanbi.org/gardens/kirstenbosch/" target="_blank" rel="noopener"><strong>Jardins de Kirstenbosch</strong></a>, passerelle suspendue Boomslang dans la canopée.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 3 · 19 oct</span>
-            <div class="day-content"><strong>V&A Waterfront</strong> le matin, spectacle de marionnettes pour les enfants. <strong>Two Oceans Aquarium</strong> (bassins tactiles, manchots). Après-midi dans le quartier coloré de <strong>Bo-Kaap</strong>.</div>
+            <div class="day-content"><a class="stealth-link" href="https://www.waterfront.co.za" target="_blank" rel="noopener"><strong>V&amp;A Waterfront</strong></a> le matin, spectacle de marionnettes pour les enfants. <a class="stealth-link" href="https://www.aquarium.co.za" target="_blank" rel="noopener"><strong>Two Oceans Aquarium</strong></a> (bassins tactiles, manchots). Après-midi dans le quartier coloré de <strong>Bo-Kaap</strong>.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 4 · 20 oct</span>
-            <div class="day-content"><strong>Robben Island</strong> le matin — visite guidée de la prison de Mandela (traversée en ferry, expérience marquante). Après-midi libre, piscine de l'hôtel.</div>
+            <div class="day-content"><a class="stealth-link" href="https://www.robben-island.org.za" target="_blank" rel="noopener"><strong>Robben Island</strong></a> le matin — visite guidée de la prison de Mandela (traversée en ferry, expérience marquante). Après-midi libre, piscine de l'hôtel.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 5 · 21 oct</span>
-            <div class="day-content"><strong>Péninsule du Cap</strong> — les manchots de <strong>Boulders Beach</strong> (Simon's Town), route panoramique jusqu'au <strong>Cape Point</strong> et le Cap de Bonne-Espérance. Funiculaire.</div>
+            <div class="day-content"><strong>Péninsule du Cap</strong> — les manchots de <a class="stealth-link" href="https://www.sanparks.org/parks/table_mountain/tourism/attractions.php" target="_blank" rel="noopener"><strong>Boulders Beach</strong></a> (Simon's Town), route panoramique jusqu'au <a class="stealth-link" href="https://www.capepoint.co.za" target="_blank" rel="noopener"><strong>Cape Point</strong></a> et le Cap de Bonne-Espérance. Funiculaire.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 6 · 22 oct</span>
-            <div class="day-content"><strong>Hout Bay</strong>, excursion en bateau vers Duiker Island (otaries). <strong>World of Birds</strong> — volières géantes et jungle aux singes. Balade côtière.</div>
+            <div class="day-content"><strong>Hout Bay</strong>, excursion en bateau vers Duiker Island (otaries). <a class="stealth-link" href="https://www.worldofbirds.org.za" target="_blank" rel="noopener"><strong>World of Birds</strong></a> — volières géantes et jungle aux singes. Balade côtière.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 7 · 23 oct</span>
@@ -1232,7 +1242,7 @@ section {
         <div class="stage-accommodation">
           <span class="accom-icon">🍷</span>
           <div>
-            <div class="accom-name">Mont Rochelle — Franschhoek</div>
+            <div class="accom-name"><a class="stealth-link" href="https://www.montrochelle.co.za" target="_blank" rel="noopener">Mont Rochelle</a> — Franschhoek</div>
             <div class="accom-detail">Hôtel de charme sur un domaine viticole, programme enfants « Little Corkers » (chasses au trésor, dégustations de jus), chambres familiales avec vue sur les montagnes.</div>
             <div class="accom-pool">🏊 Piscine privée avec vue vignoble</div>
           </div>
@@ -1241,11 +1251,11 @@ section {
         <div class="day-list">
           <div class="day-item">
             <span class="day-label">Jour 8 · 24 oct</span>
-            <div class="day-content">Route vers <strong>Franschhoek</strong> (1 h). Visite de <strong>Babylonstoren</strong> — ferme interactive, potager spectaculaire, animaux pour Ulysse. Dégustation de jus de raisin pour le petit.</div>
+            <div class="day-content">Route vers <strong>Franschhoek</strong> (1 h). Visite de <a class="stealth-link" href="https://www.babylonstoren.com" target="_blank" rel="noopener"><strong>Babylonstoren</strong></a> — ferme interactive, potager spectaculaire, animaux pour Ulysse. Dégustation de jus de raisin pour le petit.</div>
           </div>
           <div class="day-item">
             <span class="day-label">Jour 9 · 25 oct</span>
-            <div class="day-content"><strong>Franschhoek Motor Museum</strong> (collection de voitures anciennes). Balade dans le village, chocolat chaud chez <strong>Spice Route</strong>. Après-midi détente à la piscine.</div>
+            <div class="day-content"><a class="stealth-link" href="https://www.fmm.co.za" target="_blank" rel="noopener"><strong>Franschhoek Motor Museum</strong></a> (collection de voitures anciennes). Balade dans le village, chocolat chaud chez <strong>Spice Route</strong>. Après-midi détente à la piscine.</div>
           </div>
         </div>
       </div>
@@ -1274,7 +1284,7 @@ section {
         <div class="stage-accommodation">
           <span class="accom-icon">🦁</span>
           <div>
-            <div class="accom-name">Kapama River Lodge — Réserve Privée de Kapama</div>
+            <div class="accom-name"><a class="stealth-link" href="https://kapama.com/river-lodge/" target="_blank" rel="noopener">Kapama River Lodge</a> — Réserve Privée de Kapama</div>
             <div class="accom-detail">Lodge familial all-inclusive dans le Greater Kruger. Suites familiales, enfants bienvenus à tout âge (tarif enfant –50 %). Game drives, bush walks, programme enfants dédié.</div>
             <div class="accom-pool">🏊 Grande piscine à débordement face au bush</div>
           </div>
@@ -1345,7 +1355,7 @@ section {
         <div class="accom-card-visual">🌊</div>
         <div class="accom-card-body">
           <p class="accom-card-location">Sea Point, Cape Town</p>
-          <h3 class="accom-card-name">The President Hotel</h3>
+          <h3 class="accom-card-name"><a class="stealth-link" href="https://www.presidenthotel.co.za" target="_blank" rel="noopener">The President Hotel</a></h3>
           <ul class="accom-card-features">
             <li class="pool-feature">Piscine extérieure face à l'océan</li>
             <li>Appartements spacieux avec kitchenette</li>
@@ -1361,7 +1371,7 @@ section {
         <div class="accom-card-visual">🍇</div>
         <div class="accom-card-body">
           <p class="accom-card-location">Franschhoek, Winelands</p>
-          <h3 class="accom-card-name">Mont Rochelle</h3>
+          <h3 class="accom-card-name"><a class="stealth-link" href="https://www.montrochelle.co.za" target="_blank" rel="noopener">Mont Rochelle</a></h3>
           <ul class="accom-card-features">
             <li class="pool-feature">Piscine privée avec vue vignoble</li>
             <li>Programme enfants « Little Corkers »</li>
@@ -1377,7 +1387,7 @@ section {
         <div class="accom-card-visual">🦁</div>
         <div class="accom-card-body">
           <p class="accom-card-location">Réserve Kapama, Greater Kruger</p>
-          <h3 class="accom-card-name">Kapama River Lodge</h3>
+          <h3 class="accom-card-name"><a class="stealth-link" href="https://kapama.com/river-lodge/" target="_blank" rel="noopener">Kapama River Lodge</a></h3>
           <ul class="accom-card-features">
             <li class="pool-feature">Piscine à débordement face au bush</li>
             <li>All-inclusive (repas, game drives, boissons)</li>
