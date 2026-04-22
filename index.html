@@ -1759,6 +1759,46 @@ function toggleInfo(btn) {
   });
   L.marker(planeMid, { icon: planeIcon, interactive: false }).addTo(map);
 
+  // Cape Town activity markers (smaller, secondary)
+  const activities = [
+    { lat: -33.9228, lng: 18.4036, emoji: '🏨', name: 'The President Hotel', desc: 'Sea Point — votre base capétonienne' },
+    { lat: -33.9575, lng: 18.4034, emoji: '🚡', name: 'Table Mountain', desc: 'Téléphérique + panorama à 360°' },
+    { lat: -33.9881, lng: 18.4327, emoji: '🌿', name: 'Jardins de Kirstenbosch', desc: 'Passerelle Boomslang dans la canopée' },
+    { lat: -33.9036, lng: 18.4174, emoji: '🐟', name: 'V&A Waterfront', desc: 'Two Oceans Aquarium, shopping, marionnettes' },
+    { lat: -33.9208, lng: 18.4135, emoji: '🎨', name: 'Bo-Kaap', desc: 'Quartier coloré, culture Cape Malay' },
+    { lat: -33.8064, lng: 18.3666, emoji: '🏛️', name: 'Robben Island', desc: 'Prison de Mandela — ferry depuis le Waterfront' },
+    { lat: -34.1969, lng: 18.4510, emoji: '🐧', name: 'Boulders Beach', desc: 'Colonie de manchots du Cap' },
+    { lat: -34.3568, lng: 18.4973, emoji: '🌊', name: 'Cape Point', desc: 'Cap de Bonne-Espérance, funiculaire' },
+    { lat: -34.0488, lng: 18.3540, emoji: '🦅', name: 'Hout Bay & World of Birds', desc: 'Otaries de Duiker Island, volières géantes' }
+  ];
+
+  function createSmallIcon(emoji) {
+    return L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="width:32px;height:32px;border-radius:50%;background:oklch(0.25 0.03 55);display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.4);border:2px solid oklch(0.78 0.16 80 / 0.4);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform=\'scale(1.2)\'" onmouseout="this.style.transform=\'scale(1)\'">' + emoji + '</div>',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -20]
+    });
+  }
+
+  const activityLayer = L.layerGroup();
+  activities.forEach(a => {
+    const m = L.marker([a.lat, a.lng], { icon: createSmallIcon(a.emoji) });
+    m.bindPopup('<strong>' + a.name + '</strong><div>' + a.desc + '</div>');
+    activityLayer.addLayer(m);
+  });
+  activityLayer.addTo(map);
+
+  // Show/hide activities based on zoom
+  map.on('zoomend', function() {
+    if (map.getZoom() < 9) {
+      map.removeLayer(activityLayer);
+    } else if (!map.hasLayer(activityLayer)) {
+      map.addLayer(activityLayer);
+    }
+  });
+
   // Fit bounds to show all stops with padding
   const group = L.featureGroup(markers);
   map.fitBounds(group.getBounds().pad(0.15));
