@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulysse, Nancy & Nicolas — Afrique du Sud 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+   ═══════════════════════════════════════════ */
+:root {
+  /* Surfaces */
+  --bg-deep: oklch(0.15 0.02 55);
+  --bg-card: oklch(0.20 0.025 55);
+  --bg-card-hover: oklch(0.24 0.03 55);
+  --bg-elevated: oklch(0.18 0.02 55);
+
+  /* Brand */
+  --saffron: oklch(0.78 0.16 80);
+  --saffron-dim: oklch(0.65 0.12 80);
+  --sienna: oklch(0.58 0.14 45);
+  --sienna-light: oklch(0.68 0.10 45);
+  --bush-green: oklch(0.55 0.10 145);
+  --bush-green-dim: oklch(0.40 0.07 145);
+  --terracotta: oklch(0.62 0.15 35);
+
+  /* Text */
+  --text-primary: oklch(0.92 0.01 55);
+  --text-secondary: oklch(0.72 0.02 55);
+  --text-muted: oklch(0.55 0.02 55);
+
+  /* Borders */
+  --border-subtle: oklch(0.28 0.02 55);
+  --border-medium: oklch(0.35 0.03 55);
+
+  /* Spacing scale (4pt) */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;
+  --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+  /* Type scale */
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
+  --fs-sm: clamp(0.85rem, 0.8rem + 0.25vw, 0.95rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  --fs-lg: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+  --fs-xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --fs-2xl: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --fs-3xl: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+  --fs-hero: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--bg-deep);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Young Serif', Georgia, serif;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+a { color: var(--saffron); text-decoration: none; }
+a:hover { color: var(--saffron-dim); }
+
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+.container {
+  width: min(90%, 1100px);
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(90%, 800px);
+  margin-inline: auto;
+}
+
+section {
+  padding-block: var(--sp-9);
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--sp-4) 0;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: oklch(0.12 0.02 55 / 0.85);
+  backdrop-filter: blur(16px);
+}
+.nav-inner {
+  width: min(92%, 1200px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-brand {
+  font-family: 'Young Serif', serif;
+  font-size: var(--fs-lg);
+  color: var(--saffron);
+}
+.nav-links {
+  display: flex;
+  gap: var(--sp-5);
+  list-style: none;
+}
+.nav-links a {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--saffron); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: var(--sp-9) var(--sp-5);
+  overflow: hidden;
+}
+
+.hero-landscape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.45 0.12 60 / 0.15), transparent 70%);
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-overline {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: var(--sp-5);
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-5);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-size: var(--fs-xl);
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: var(--sp-6);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-meta {
+  display: flex;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.hero-meta-item .icon {
+  font-size: 1.3em;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: var(--sp-7);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: float 3s ease-in-out infinite;
+}
+.hero-scroll svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  fill: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ═══════════════════════════════════════════
+   SECTION HEADERS
+   ═══════════════════════════════════════════ */
+.section-header {
+  margin-bottom: var(--sp-8);
+}
+
+.section-number {
+  font-family: 'Young Serif', serif;
+  font-size: var(--fs-3xl);
+  color: oklch(0.30 0.04 55);
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--sp-3);
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--sp-3);
+}
+
+.section-lead {
+  font-size: var(--fs-lg);
+  color: var(--text-secondary);
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   POURQUOI — FEATURE GRID
+   ═══════════════════════════════════════════ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-5);
+}
+
+.why-card {
+  background: var(--bg-card);
+  padding: var(--sp-6);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+.why-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-medium);
+  transform: translateY(-4px);
+}
+
+.why-card .card-icon {
+  font-size: 2.2rem;
+  margin-bottom: var(--sp-4);
+  display: block;
+}
+
+.why-card h3 {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-2);
+}
+
+.why-card p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════════ */
+.timeline {
+  position: relative;
+  padding-left: var(--sp-8);
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--saffron),
+    var(--sienna) 33%,
+    var(--bush-green) 66%,
+    var(--saffron)
+  );
+  opacity: 0.4;
+}
+
+.timeline-stage {
+  margin-bottom: var(--sp-9);
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: calc(-1 * var(--sp-8) + 8px);
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid var(--saffron);
+  background: var(--bg-deep);
+  z-index: 2;
+}
+.timeline-stage:nth-child(2) .timeline-dot { border-color: var(--sienna); }
+.timeline-stage:nth-child(3) .timeline-dot { border-color: var(--bush-green); }
+.timeline-stage:nth-child(4) .timeline-dot { border-color: var(--saffron); }
+.timeline-stage:nth-child(5) .timeline-dot { border-color: var(--terracotta); }
+
+.stage-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.stage-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  background: oklch(0.78 0.16 80 / 0.12);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: 6px;
+}
+.timeline-stage:nth-child(2) .stage-label {
+  color: var(--sienna-light);
+  background: oklch(0.58 0.14 45 / 0.12);
+}
+.timeline-stage:nth-child(3) .stage-label {
+  color: var(--bush-green);
+  background: oklch(0.55 0.10 145 / 0.12);
+}
+.timeline-stage:nth-child(5) .stage-label {
+  color: var(--terracotta);
+  background: oklch(0.62 0.15 35 / 0.12);
+}
+
+.stage-title {
+  font-size: var(--fs-xl);
+}
+
+.stage-dates {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.stage-accommodation {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-5);
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+}
+.stage-accommodation .accom-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.accom-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-1);
+}
+.accom-detail {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.accom-pool {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--bush-green);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  margin-top: var(--sp-2);
+}
+
+.day-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.day-item {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  padding: var(--sp-3) 0;
+}
+.day-item + .day-item {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.day-label {
+  flex-shrink: 0;
+  width: 90px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 2px;
+}
+
+.day-content {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.day-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Transfer day */
+.transfer-card {
+  background: oklch(0.22 0.03 80 / 0.5);
+  border: 1px dashed var(--saffron-dim);
+  border-radius: 12px;
+  padding: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-7);
+}
+.transfer-card .transfer-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.transfer-card p {
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.transfer-route {
+  font-weight: 700;
+  color: var(--saffron);
+  font-size: var(--fs-base);
+  display: block;
+  margin-bottom: var(--sp-1);
+}
+
+/* ═══════════════════════════════════════════
+   ACCOMMODATIONS CARDS
+   ═══════════════════════════════════════════ */
+.accom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--sp-5);
+}
+
+.accom-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.accom-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-medium);
+}
+
+.accom-card-visual {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+.accom-card:nth-child(1) .accom-card-visual {
+  background: linear-gradient(135deg, oklch(0.30 0.05 210), oklch(0.22 0.04 200));
+}
+.accom-card:nth-child(2) .accom-card-visual {
+  background: linear-gradient(135deg, oklch(0.30 0.07 130), oklch(0.22 0.05 140));
+}
+.accom-card:nth-child(3) .accom-card-visual {
+  background: linear-gradient(135deg, oklch(0.30 0.06 60), oklch(0.22 0.04 50));
+}
+
+.accom-card-body {
+  padding: var(--sp-5);
+}
+
+.accom-card-location {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.accom-card-name {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-3);
+}
+
+.accom-card-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.accom-card-features li {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.accom-card-features li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--saffron);
+  flex-shrink: 0;
+}
+.accom-card-features li.pool-feature {
+  color: var(--bush-green);
+  font-weight: 600;
+}
+.accom-card-features li.pool-feature::before {
+  background: var(--bush-green);
+}
+
+.accom-card-price {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border-subtle);
+}
+.accom-card-price strong {
+  color: var(--saffron);
+  font-size: var(--fs-base);
+}
+
+/* ═══════════════════════════════════════════
+   BUDGET TABLE
+   ═══════════════════════════════════════════ */
+.budget-section {
+  background: var(--bg-elevated);
+}
+
+.budget-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.budget-table th {
+  text-align: left;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 2px solid var(--border-medium);
+}
+
+.budget-table td {
+  padding: var(--sp-4);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+.budget-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.budget-table tr:hover td {
+  background: oklch(0.22 0.02 55 / 0.5);
+}
+
+.budget-table .budget-total td {
+  border-bottom: none;
+  border-top: 2px solid var(--saffron);
+  color: var(--saffron);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  padding-top: var(--sp-5);
+  font-family: 'Young Serif', serif;
+}
+
+/* ═══════════════════════════════════════════
+   INFO PRATIQUES — ACCORDION
+   ═══════════════════════════════════════════ */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.info-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.info-item.open {
+  border-color: var(--border-medium);
+}
+
+.info-trigger {
+  width: 100%;
+  background: var(--bg-card);
+  border: none;
+  padding: var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: background 0.3s;
+}
+.info-trigger:hover {
+  background: var(--bg-card-hover);
+}
+
+.info-trigger .info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.info-chevron {
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.info-item.open .info-chevron {
+  transform: rotate(180deg);
+}
+.info-chevron polyline {
+  stroke: var(--text-muted);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.info-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.info-item.open .info-body {
+  grid-template-rows: 1fr;
+}
+.info-body-inner {
+  overflow: hidden;
+}
+.info-body-content {
+  padding: 0 var(--sp-5) var(--sp-5);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  line-height: 1.75;
+  max-width: 70ch;
+}
+
+/* ═══════════════════════════════════════════
+   MOMENTS FORTS — HIGHLIGHT GRID
+   ═══════════════════════════════════════════ */
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--sp-4);
+}
+
+@media (max-width: 768px) {
+  .moments-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+}
+@media (max-width: 480px) {
+  .moments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.moment-card {
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--sp-5);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.moment-card:hover {
+  transform: scale(1.03);
+}
+
+.moment-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, oklch(0.10 0.02 55 / 0.8), transparent 60%);
+  z-index: 1;
+}
+
+.moment-emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 4rem;
+  opacity: 0.4;
+  z-index: 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
+.moment-card:hover .moment-emoji {
+  transform: translate(-50%, -65%) scale(1.1);
+  opacity: 0.55;
+}
+
+.moment-card h4 {
+  font-size: var(--fs-base);
+  position: relative;
+  z-index: 2;
+  line-height: 1.3;
+}
+
+.moment-card:nth-child(1) { background: oklch(0.28 0.06 210); }
+.moment-card:nth-child(2) { background: oklch(0.28 0.04 200); }
+.moment-card:nth-child(3) { background: oklch(0.28 0.07 130); }
+.moment-card:nth-child(4) { background: oklch(0.28 0.08 70); }
+.moment-card:nth-child(5) { background: oklch(0.28 0.10 35); }
+.moment-card:nth-child(6) { background: oklch(0.28 0.06 60); }
+
+/* ═══════════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════════ */
+.section-divider {
+  width: min(90%, 1100px);
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-medium), transparent);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer {
+  padding: var(--sp-8) 0;
+  text-align: center;
+}
+.footer p {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+}
+.footer .footer-brand {
+  font-family: 'Young Serif', serif;
+  font-size: var(--fs-lg);
+  color: var(--saffron-dim);
+  margin-bottom: var(--sp-3);
+}
+
+/* ═══════════════════════════════════════════
+   MAP DECORATION
+   ═══════════════════════════════════════════ */
+.map-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-7);
+  padding: var(--sp-6);
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.map-stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  text-align: center;
+}
+.map-stop-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid var(--border-medium);
+  background: var(--bg-deep);
+}
+.map-stop-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.map-stop-dates {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.map-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .map-route { gap: var(--sp-3); }
+  .map-arrow { transform: rotate(90deg); }
+  .map-route {
+    flex-direction: column;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BACK TO TOP
+   ═══════════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--saffron);
+  color: var(--bg-deep);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, background 0.3s;
+  z-index: 90;
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--saffron-dim);
+}
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ═══════════════════════════════════════════
+   SAFARI ACTIVITIES
+   ═══════════════════════════════════════════ */
+.safari-activities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.safari-act {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: var(--sp-4);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  transition: background 0.3s, transform 0.3s;
+}
+.safari-act:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+.safari-act-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: var(--sp-2);
+}
+
+/* ═══════════════════════════════════════════
+   ALTERNATIVE BOX
+   ═══════════════════════════════════════════ */
+.alt-box {
+  background: oklch(0.55 0.10 145 / 0.08);
+  border: 1px solid oklch(0.55 0.10 145 / 0.2);
+  border-radius: 12px;
+  padding: var(--sp-5);
+  margin-top: var(--sp-5);
+  display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+}
+.alt-box-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.alt-box h4 {
+  font-size: var(--fs-base);
+  color: var(--bush-green);
+  margin-bottom: var(--sp-2);
+}
+.alt-box p {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">RSA 2026</div>
+    <ul class="nav-links">
+      <li><a href="#pourquoi">Pourquoi</a></li>
+      <li><a href="#itineraire">Itinéraire</a></li>
+      <li><a href="#hebergements">Hébergements</a></li>
+      <li><a href="#budget">Budget</a></li>
+      <li><a href="#pratique">Pratique</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+
+  <!-- African landscape SVG silhouette -->
+  <svg class="hero-landscape" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="oklch(0.25 0.04 55)" d="M0,320 L0,260 Q60,240 100,250 Q140,260 180,240 Q220,215 260,220 L280,218 Q290,180 310,170 Q320,165 330,170 Q340,178 345,190 L350,200 Q360,210 380,215 Q400,220 430,210 Q460,195 500,200 Q540,205 580,190 Q620,170 660,175 Q700,180 740,160 Q760,150 780,155 Q800,162 830,155 Q860,145 900,150 Q920,153 940,140 Q960,125 980,120 Q1000,115 1020,120 Q1040,130 1060,125 L1060,120 Q1070,90 1085,70 Q1095,55 1105,70 Q1115,90 1120,115 L1120,120 Q1140,130 1160,128 Q1200,120 1240,130 Q1280,140 1320,135 Q1360,128 1400,140 L1440,145 L1440,320 Z"/>
+    <!-- Acacia tree 1 -->
+    <g transform="translate(320, 100)">
+      <rect x="-3" y="40" width="6" height="70" fill="oklch(0.22 0.03 55)"/>
+      <ellipse cx="0" cy="35" rx="40" ry="22" fill="oklch(0.22 0.03 55)"/>
+    </g>
+    <!-- Acacia tree 2 -->
+    <g transform="translate(1090, 10)">
+      <rect x="-4" y="30" width="8" height="80" fill="oklch(0.22 0.03 55)"/>
+      <ellipse cx="0" cy="25" rx="50" ry="25" fill="oklch(0.22 0.03 55)"/>
+    </g>
+    <!-- Sun/moon -->
+    <circle cx="800" cy="90" r="35" fill="oklch(0.50 0.10 70 / 0.3)"/>
+  </svg>
+
+  <p class="hero-overline reveal">Proposition de voyage</p>
+  <h1 class="reveal reveal-delay-1">Ulysse, Nancy & Nicolas<br>en Afrique du Sud</h1>
+  <p class="hero-subtitle reveal reveal-delay-2">17 octobre — 1er novembre 2026<br>15 jours d'aventure</p>
+
+  <div class="hero-meta reveal reveal-delay-3">
+    <span class="hero-meta-item"><span class="icon">👨‍👩‍👦</span> Nicolas, Nancy & Ulysse (7 ans)</span>
+    <span class="hero-meta-item"><span class="icon">🌍</span> Cape Town · Winelands · Kruger</span>
+    <span class="hero-meta-item"><span class="icon">🏊</span> Piscine à chaque étape</span>
+  </div>
+
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- POURQUOI -->
+<section id="pourquoi">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Pourquoi l'Afrique du Sud en octobre ?</h2>
+      <p class="section-lead">Le printemps austral offre les conditions idéales pour un voyage en famille mêlant nature sauvage et découverte culturelle.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <span class="card-icon">☀️</span>
+        <h3>Printemps austral</h3>
+        <p>Températures douces de 20 à 28 °C, journées longues et ensoleillées. Le meilleur de l'année pour explorer.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <span class="card-icon">🦁</span>
+        <h3>Saison safari idéale</h3>
+        <p>Fin de saison sèche : la végétation clairsemée facilite l'observation des Big Five autour des points d'eau.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <span class="card-icon">🏔️</span>
+        <h3>Cape Town au meilleur</h3>
+        <p>Le Cap sort de l'hiver, les fleurs sauvages éclosent, les températures sont agréables sans la foule de l'été.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-4">
+        <span class="card-icon">🇫🇷</span>
+        <h3>Sans visa</h3>
+        <p>Les citoyens français n'ont pas besoin de visa pour un séjour touristique de moins de 90 jours. Un passeport valide suffit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ITINERAIRE -->
+<section id="itineraire">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Votre itinéraire</h2>
+      <p class="section-lead">Trois étapes sans retour en arrière — le rythme parfait pour profiter sans courir.</p>
+    </div>
+
+    <!-- Route overview -->
+    <div class="map-route reveal">
+      <div class="map-stop">
+        <div class="map-stop-icon">✈️</div>
+        <span class="map-stop-label">Paris CDG</span>
+        <span class="map-stop-dates">17 oct</span>
+      </div>
+      <span class="map-arrow">→</span>
+      <div class="map-stop">
+        <div class="map-stop-icon">🏙️</div>
+        <span class="map-stop-label">Cape Town</span>
+        <span class="map-stop-dates">17–24 oct</span>
+      </div>
+      <span class="map-arrow">→</span>
+      <div class="map-stop">
+        <div class="map-stop-icon">🍇</div>
+        <span class="map-stop-label">Winelands</span>
+        <span class="map-stop-dates">24–26 oct</span>
+      </div>
+      <span class="map-arrow">→</span>
+      <div class="map-stop">
+        <div class="map-stop-icon">🦓</div>
+        <span class="map-stop-label">Kruger</span>
+        <span class="map-stop-dates">26 oct–1 nov</span>
+      </div>
+      <span class="map-arrow">→</span>
+      <div class="map-stop">
+        <div class="map-stop-icon">✈️</div>
+        <span class="map-stop-label">Retour</span>
+        <span class="map-stop-dates">1 nov</span>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+
+      <!-- ÉTAPE 1 -->
+      <div class="timeline-stage reveal">
+        <div class="timeline-dot"></div>
+        <div class="stage-header">
+          <span class="stage-label">Étape 1</span>
+          <h3 class="stage-title">Cape Town</h3>
+          <span class="stage-dates">17–24 octobre · 7 nuits</span>
+        </div>
+
+        <div class="stage-accommodation">
+          <span class="accom-icon">🏨</span>
+          <div>
+            <div class="accom-name">The President Hotel — Sea Point</div>
+            <div class="accom-detail">Appartements spacieux avec vue mer, sur la promenade de Sea Point. Kids club, restaurant, emplacement idéal pour explorer le Cap à votre rythme.</div>
+            <div class="accom-pool">🏊 Piscine extérieure face à l'océan</div>
+          </div>
+        </div>
+
+        <div class="day-list">
+          <div class="day-item">
+            <span class="day-label">Jour 1 · 17 oct</span>
+            <div class="day-content"><strong>Arrivée au Cap.</strong> Installation à l'hôtel, promenade sur le front de mer de Sea Point au coucher du soleil. Dîner au bord de l'océan.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 2 · 18 oct</span>
+            <div class="day-content"><strong>Table Mountain</strong> en téléphérique — panorama époustouflant sur la ville et l'océan. Après-midi aux <strong>Jardins de Kirstenbosch</strong>, passerelle suspendue Boomslang dans la canopée.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 3 · 19 oct</span>
+            <div class="day-content"><strong>V&A Waterfront</strong> le matin, spectacle de marionnettes pour les enfants. <strong>Two Oceans Aquarium</strong> (bassins tactiles, manchots). Après-midi dans le quartier coloré de <strong>Bo-Kaap</strong>.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 4 · 20 oct</span>
+            <div class="day-content"><strong>Robben Island</strong> le matin — visite guidée de la prison de Mandela (traversée en ferry, expérience marquante). Après-midi libre, piscine de l'hôtel.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 5 · 21 oct</span>
+            <div class="day-content"><strong>Péninsule du Cap</strong> — les manchots de <strong>Boulders Beach</strong> (Simon's Town), route panoramique jusqu'au <strong>Cape Point</strong> et le Cap de Bonne-Espérance. Funiculaire.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 6 · 22 oct</span>
+            <div class="day-content"><strong>Hout Bay</strong>, excursion en bateau vers Duiker Island (otaries). <strong>World of Birds</strong> — volières géantes et jungle aux singes. Balade côtière.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 7 · 23 oct</span>
+            <div class="day-content">Journée libre. Marché de <strong>Neighbourgoods</strong>, shopping au Waterfront, baignade à la piscine. Rythme tranquille pour souffler.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 2 -->
+      <div class="timeline-stage reveal">
+        <div class="timeline-dot"></div>
+        <div class="stage-header">
+          <span class="stage-label">Étape 2</span>
+          <h3 class="stage-title">Vignobles — Winelands</h3>
+          <span class="stage-dates">24–26 octobre · 2 nuits</span>
+        </div>
+
+        <div class="stage-accommodation">
+          <span class="accom-icon">🍷</span>
+          <div>
+            <div class="accom-name">Mont Rochelle — Franschhoek</div>
+            <div class="accom-detail">Hôtel de charme sur un domaine viticole, programme enfants « Little Corkers » (chasses au trésor, dégustations de jus), chambres familiales avec vue sur les montagnes.</div>
+            <div class="accom-pool">🏊 Piscine privée avec vue vignoble</div>
+          </div>
+        </div>
+
+        <div class="day-list">
+          <div class="day-item">
+            <span class="day-label">Jour 8 · 24 oct</span>
+            <div class="day-content">Route vers <strong>Franschhoek</strong> (1 h). Visite de <strong>Babylonstoren</strong> — ferme interactive, potager spectaculaire, animaux pour Ulysse. Dégustation de jus de raisin pour le petit.</div>
+          </div>
+          <div class="day-item">
+            <span class="day-label">Jour 9 · 25 oct</span>
+            <div class="day-content"><strong>Franschhoek Motor Museum</strong> (collection de voitures anciennes). Balade dans le village, chocolat chaud chez <strong>Spice Route</strong>. Après-midi détente à la piscine.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSFERT -->
+      <div class="timeline-stage reveal">
+        <div class="timeline-dot"></div>
+        <div class="transfer-card">
+          <span class="transfer-icon">✈️</span>
+          <div>
+            <span class="transfer-route">Winelands → Cape Town → Hoedspruit</span>
+            <p>Route retour vers l'aéroport du Cap (1 h), puis vol Airlink (~2 h 30). Transfert organisé par le lodge vers la réserve privée de Kapama. Arrivée en début d'après-midi, premier game drive au coucher du soleil.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ÉTAPE 4 -->
+      <div class="timeline-stage reveal">
+        <div class="timeline-dot"></div>
+        <div class="stage-header">
+          <span class="stage-label">Étape 3</span>
+          <h3 class="stage-title">Safari — Kruger</h3>
+          <span class="stage-dates">26 octobre — 1er novembre · 5 nuits</span>
+        </div>
+
+        <div class="stage-accommodation">
+          <span class="accom-icon">🦁</span>
+          <div>
+            <div class="accom-name">Kapama River Lodge — Réserve Privée de Kapama</div>
+            <div class="accom-detail">Lodge familial all-inclusive dans le Greater Kruger. Suites familiales, enfants bienvenus à tout âge (tarif enfant –50 %). Game drives, bush walks, programme enfants dédié.</div>
+            <div class="accom-pool">🏊 Grande piscine à débordement face au bush</div>
+          </div>
+        </div>
+
+        <div class="safari-activities">
+          <div class="safari-act">
+            <span class="safari-act-icon">🌅</span>
+            Game drives lever & coucher du soleil
+          </div>
+          <div class="safari-act">
+            <span class="safari-act-icon">🦒</span>
+            Observation des Big Five
+          </div>
+          <div class="safari-act">
+            <span class="safari-act-icon">🥾</span>
+            Promenades guidées dans le bush
+          </div>
+          <div class="safari-act">
+            <span class="safari-act-icon">🧒</span>
+            Programme enfants dédié
+          </div>
+          <div class="safari-act">
+            <span class="safari-act-icon">🏊</span>
+            Piscine entre les safaris
+          </div>
+          <div class="safari-act">
+            <span class="safari-act-icon">✨</span>
+            Observation des étoiles
+          </div>
+        </div>
+
+        <div class="alt-box" style="margin-top: var(--sp-6);">
+          <span class="alt-box-icon">💡</span>
+          <div>
+            <h4>Alternative sans paludisme</h4>
+            <p>Pour éviter la prophylaxie antipaludique chez l'enfant, la <strong>Madikwe Game Reserve</strong> offre une expérience safari comparable en zone sans paludisme, avec des lodges familiaux avec piscine (ex. Madikwe Safari Lodge). Accessible par vol depuis Johannesburg.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end timeline -->
+
+    <!-- Departure -->
+    <div class="transfer-card reveal" style="margin-top: var(--sp-6);">
+      <span class="transfer-icon">🛫</span>
+      <div>
+        <span class="transfer-route">Jour 15 · 1er novembre — Retour</span>
+        <p>Vol Hoedspruit → Johannesburg, connexion internationale vers Paris. Arrivée le lendemain matin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HÉBERGEMENTS -->
+<section id="hebergements">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Vos hébergements</h2>
+      <p class="section-lead">Chaque lieu a été choisi pour le confort familial, la piscine, et l'immersion dans son environnement.</p>
+    </div>
+
+    <div class="accom-grid">
+      <div class="accom-card reveal reveal-delay-1">
+        <div class="accom-card-visual">🌊</div>
+        <div class="accom-card-body">
+          <p class="accom-card-location">Sea Point, Cape Town</p>
+          <h3 class="accom-card-name">The President Hotel</h3>
+          <ul class="accom-card-features">
+            <li class="pool-feature">Piscine extérieure face à l'océan</li>
+            <li>Appartements spacieux avec kitchenette</li>
+            <li>Kids club & babysitting</li>
+            <li>Promenade de Sea Point au pied de l'hôtel</li>
+            <li>7 nuits d'affilée</li>
+          </ul>
+          <p class="accom-card-price"><strong>150 – 300 €</strong> / nuit</p>
+        </div>
+      </div>
+
+      <div class="accom-card reveal reveal-delay-2">
+        <div class="accom-card-visual">🍇</div>
+        <div class="accom-card-body">
+          <p class="accom-card-location">Franschhoek, Winelands</p>
+          <h3 class="accom-card-name">Mont Rochelle</h3>
+          <ul class="accom-card-features">
+            <li class="pool-feature">Piscine privée avec vue vignoble</li>
+            <li>Programme enfants « Little Corkers »</li>
+            <li>Domaine viticole avec restaurant</li>
+            <li>Chambres familiales avec vue montagne</li>
+            <li>2 nuits</li>
+          </ul>
+          <p class="accom-card-price"><strong>400 – 700 €</strong> / nuit</p>
+        </div>
+      </div>
+
+      <div class="accom-card reveal reveal-delay-3">
+        <div class="accom-card-visual">🦁</div>
+        <div class="accom-card-body">
+          <p class="accom-card-location">Réserve Kapama, Greater Kruger</p>
+          <h3 class="accom-card-name">Kapama River Lodge</h3>
+          <ul class="accom-card-features">
+            <li class="pool-feature">Piscine à débordement face au bush</li>
+            <li>All-inclusive (repas, game drives, boissons)</li>
+            <li>Suites familiales, enfants tous âges</li>
+            <li>Tarif enfant –50 %</li>
+            <li>5 nuits</li>
+          </ul>
+          <p class="accom-card-price"><strong>700 – 750 €</strong> / personne / nuit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BUDGET -->
+<section id="budget" class="budget-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Budget estimatif</h2>
+      <p class="section-lead">Fourchette indicative pour une famille de 3 personnes sur 15 jours.</p>
+    </div>
+
+    <div class="budget-table-wrap reveal">
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th>Poste</th>
+            <th>Estimation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vols internationaux Paris – Cape Town A/R × 3</td>
+            <td>2 400 – 3 600 €</td>
+          </tr>
+          <tr>
+            <td>Vol interne Cape Town – Hoedspruit A/R × 3</td>
+            <td>750 – 1 100 €</td>
+          </tr>
+          <tr>
+            <td>Hébergement Cape Town (7 nuits)</td>
+            <td>1 050 – 2 100 €</td>
+          </tr>
+          <tr>
+            <td>Hébergement Winelands (2 nuits)</td>
+            <td>800 – 1 400 €</td>
+          </tr>
+          <tr>
+            <td>Safari all-inclusive Kapama (5 nuits × 3 pers.)</td>
+            <td>5 250 – 7 500 €</td>
+          </tr>
+          <tr>
+            <td>Activités & excursions</td>
+            <td>500 – 800 €</td>
+          </tr>
+          <tr>
+            <td>Repas hors safari</td>
+            <td>600 – 900 €</td>
+          </tr>
+          <tr>
+            <td>Transferts & transports locaux</td>
+            <td>300 – 500 €</td>
+          </tr>
+          <tr>
+            <td>Assurance voyage famille</td>
+            <td>150 – 250 €</td>
+          </tr>
+          <tr class="budget-total">
+            <td>Total estimé</td>
+            <td>11 800 – 18 150 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MOMENTS FORTS -->
+<section id="moments">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Les moments forts</h2>
+      <p class="section-lead">Six expériences inoubliables qui marqueront votre famille.</p>
+    </div>
+
+    <div class="moments-grid">
+      <div class="moment-card reveal reveal-delay-1">
+        <span class="moment-emoji">🚡</span>
+        <h4>Téléphérique de Table Mountain</h4>
+      </div>
+      <div class="moment-card reveal reveal-delay-2">
+        <span class="moment-emoji">🐧</span>
+        <h4>Manchots de Boulders Beach</h4>
+      </div>
+      <div class="moment-card reveal reveal-delay-3">
+        <span class="moment-emoji">🍇</span>
+        <h4>Vignobles de Franschhoek</h4>
+      </div>
+      <div class="moment-card reveal reveal-delay-4">
+        <span class="moment-emoji">🦁</span>
+        <h4>Safari Big Five au Kruger</h4>
+      </div>
+      <div class="moment-card reveal reveal-delay-5">
+        <span class="moment-emoji">🎨</span>
+        <h4>Quartier coloré de Bo-Kaap</h4>
+      </div>
+      <div class="moment-card reveal">
+        <span class="moment-emoji">🌅</span>
+        <h4>Piscine au coucher du soleil</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- INFOS PRATIQUES -->
+<section id="pratique">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Infos pratiques</h2>
+      <p class="section-lead">Tout ce qu'il faut savoir avant de partir.</p>
+    </div>
+
+    <div class="info-list reveal">
+
+      <div class="info-item open">
+        <button class="info-trigger" onclick="toggleInfo(this)">
+          <span class="info-icon">🛂</span>
+          <span>Visa & documents</span>
+          <svg class="info-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="info-body">
+          <div class="info-body-inner">
+            <div class="info-body-content">
+              <strong>Pas de visa</strong> pour les citoyens français pour un séjour touristique de moins de 90 jours. Passeport valide au moins 6 mois après la date de retour, avec <strong>2 pages vierges minimum</strong>. L'enfant doit avoir son propre passeport. Se renseigner sur les exigences éventuelles d'acte de naissance (intégral) pour les mineurs.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <button class="info-trigger" onclick="toggleInfo(this)">
+          <span class="info-icon">💉</span>
+          <span>Santé & vaccinations</span>
+          <svg class="info-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="info-body">
+          <div class="info-body-inner">
+            <div class="info-body-content">
+              Vaccins à jour (DTP, ROR, hépatite A recommandé). <strong>Zone paludisme au Kruger</strong> → prophylaxie antipaludique recommandée (Malarone/atovaquone-proguanil, compatible enfant de 7 ans — consulter le médecin). Cape Town et Winelands : <strong>aucun risque de paludisme</strong>. Anti-moustiques DEET, manches longues au crépuscule. <strong>Assurance rapatriement sanitaire indispensable.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <button class="info-trigger" onclick="toggleInfo(this)">
+          <span class="info-icon">🌤️</span>
+          <span>Climat & bagages</span>
+          <svg class="info-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="info-body">
+          <div class="info-body-inner">
+            <div class="info-body-content">
+              Printemps austral : <strong>20–28 °C</strong> en journée, 13–16 °C le matin. Courtes averses possibles au Kruger l'après-midi. Emporter couches légères, maillots de bain, chapeau, crème solaire. Prévoir un <strong>pull chaud pour les safaris du matin</strong> (en véhicule ouvert, il fait frais avant le lever du soleil). Couleurs neutres recommandées pour le safari (kaki, beige — pas de blanc, pas de noir).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <button class="info-trigger" onclick="toggleInfo(this)">
+          <span class="info-icon">🔒</span>
+          <span>Sécurité</span>
+          <svg class="info-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="info-body">
+          <div class="info-body-inner">
+            <div class="info-body-content">
+              Vigilance standard en ville : ne pas exposer les objets de valeur, éviter de marcher seul la nuit. Les zones touristiques (Waterfront, Sea Point, Winelands) et les lodges de safari sont <strong>très sûrs</strong>. Utiliser des transports fiables (Uber fonctionne très bien au Cap). Suivre les consignes de sécurité des lodges.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <button class="info-trigger" onclick="toggleInfo(this)">
+          <span class="info-icon">✈️</span>
+          <span>Vols</span>
+          <svg class="info-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="info-body">
+          <div class="info-body-inner">
+            <div class="info-body-content">
+              <strong>Paris → Cape Town</strong> : vol direct Air France (~11 h 30, vol de nuit). <strong>Cape Town → Hoedspruit</strong> : Airlink (~2 h 30, vols quotidiens). Réserver au moins 4 mois à l'avance pour les meilleurs tarifs. Les transferts aéroport–lodge sont organisés par Kapama (inclus ou supplément modique).
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand">Ulysse, Nancy & Nicolas en Afrique du Sud</p>
+    <p>Proposition préparée avec soin — Avril 2026</p>
+    <p style="margin-top: var(--sp-2); font-size: var(--fs-xs);">Les tarifs sont indicatifs et peuvent varier selon la période de réservation.<br>Les activités sont données à titre de suggestion et peuvent être adaptées à vos envies.</p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => revealObserver.observe(el));
+
+// Nav scroll effect
+const nav = document.getElementById('nav');
+const backToTop = document.getElementById('backToTop');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 80);
+  backToTop.classList.toggle('visible', y > 600);
+  lastScroll = y;
+}, { passive: true });
+
+// Accordion
+function toggleInfo(btn) {
+  const item = btn.closest('.info-item');
+  const wasOpen = item.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.info-item').forEach(i => i.classList.remove('open'));
+
+  // Toggle clicked
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
